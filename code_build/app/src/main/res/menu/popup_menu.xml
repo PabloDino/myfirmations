@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_snooze5min"
+        android:title="@string/snooze_5min"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_snoozeday"
+        android:title="@string/snooze_day"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_snoozeweek"
+        android:title="@string/snooze_week"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_snoozeforever"
+        android:title="@string/snooze_forever"
+        app:showAsAction="never"/>
+</menu>

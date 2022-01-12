@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="settingsvm"
+            type="com.example.myfirmations.SettingsViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lblSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblScrollSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scroll Speed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lblSettings"
+            app:layout_constraintTop_toTopOf="@id/sldScrollSpeed"
+            app:layout_constraintBottom_toBottomOf="@id/sldScrollSpeed" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sldScrollSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:valueFrom="5.0"
+            android:valueTo="60.0"
+            android:stepSize="1.0"
+             app:layout_constraintStart_toEndOf="@id/lblScrollSpeed"
+            app:layout_constraintTop_toBottomOf="@id/lblSettings" />
+
+
+        <TextView
+            android:id="@+id/lblAllowVoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Allow Voice"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sldScrollSpeed"
+            app:layout_constraintTop_toTopOf="@id/swtAllowVoice"
+            app:layout_constraintBottom_toBottomOf="@id/swtAllowVoice" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swtAllowVoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/lblAllowVoice"
+            app:layout_constraintTop_toBottomOf="@id/sldScrollSpeed" />
+
+        <TextView
+            android:id="@+id/lblSelectVoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_voice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/swtAllowVoice" />
+
+        <Spinner
+            android:id="@+id/spnSelectVoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toEndOf="@id/lblSelectVoice"
+            app:layout_constraintTop_toBottomOf="@id/swtAllowVoice" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spnSelectVoice" />
+
+
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnUpdate"
+            app:layout_constraintTop_toBottomOf="@id/spnSelectVoice" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

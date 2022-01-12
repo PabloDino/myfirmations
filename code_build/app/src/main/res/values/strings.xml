@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">My Firmations</string>
+    <string name="snooze_5min">for 5 mins</string>
+    <string name="snooze_day">for a day</string>
+    <string name="snooze_week">for a week</string>
+    <string name="snooze_forever">forever!</string>
+    <string name="voice_sample">This is how I will be speaking</string>
+
+    <string name="affirmation1">Work for everything - Be entitled to nothing.</string>
+    <string name="affirmation2">If you lose - Don\'t lose the lesson.</string>
+    <string name="affirmation3">Things are harder than they need to be - not to worry - you are tougher than you need to be.</string>
+    <string name="affirmation4">Smooth seas do not make skillful sailors.</string>
+    <string name="affirmation5">Perfect practice builds perfection</string>
+    <string name="affirmation6">Today\'s pain is tomorrow\'s strength.</string>
+    <string name="affirmation7">You do not get to where you are going, by remaining where you are.</string>
+    <string name="affirmation8">When all doors close around you, it is time to make one.</string>
+    <string name="affirmation9">Be the master of what drives you... not the other way around.</string>
+    <string name="affirmation10">If it was easy, everyone would have already done it.</string>
+    <string name="affirmation11">If others do not believe in you, it becomes that more important to believe in yourself.</string>
+    <string name="affirmation12">When you think you are going through hell, DON\'T STOP!!!.</string>
+    <string name="affirmation13">Darkness will not overcome darkness - Only light will do that. Hate will not overcome hate - Only love will do that.</string>
+    <string name="affirmation14">It\'s ok to take a breath. The world will still be here when you are done.</string>
+    <string name="affirmation15">Do what you can... Don\'t \'not do\' what you can\'t.</string>
+    <string name="affirmation16">Earn from what you love, so you don\'t need to work a day in your life.</string>
+    <string name="affirmation17">Good training is not about being able to get it right... It\'s about not being able to get it wrong.</string>
+    <string name="affirmation18">Adversity creates strength.</string>
+    <string name="affirmation19">Bravery is not about having no fear. It\'s about facing fears.</string>
+    <string name="affirmation20">Strength is not about never falling. It\'s about getting back up.</string>
+    <string name="affirmation21">Feeling sorry for yourself is the root of all evil.</string>
+    <string name="affirmation22">Time tells the truth.</string>
+    <string name="affirmation23">Your plans, hopes and dreams are just that. YOURS!!!.</string>
+    <string name="affirmation24">Every breath is a new opportunity.</string>
+    <string name="affirmation25">Stay strong because you ARE the shield.</string>
+    <string name="affirmation26">Weakness is for those who can afford it.</string>
+    <string name="affirmation27">When the goal is very far, one step closer is often good enough.</string>
+    <string name="affirmation28">Everyone has a superpower. Learn yours.</string>
+    <string name="affirmation29">Diamonds are created by pressure, which is why you are tough.</string>
+    <string name="affirmation30">Never stop learning.</string>
+    <string name="affirmation31">Technique counters strength.</string>
+    <string name="affirmation32">Timing counters speed.</string>
+    <string name="affirmation33">Movement counters size.</string>
+    <string name="affirmation34">Let every failure sharpen your resolve until you can cut through any barrier.</string>
+    <string name="affirmation35">Time heals.</string>
+    <string name="affirmation36">Inner peace does not worry about outside noise.</string>
+    <string name="affirmation37">Don\'t be afraid of mistakes .. Good decisions come from experience, and experience comes from mistakes.</string>
+    <string name="affirmation38">Whoever said it was easy probably shouldn\'t be trusted.</string>
+    <string name="affirmation39">Every now and again, enjoy the view.</string>
+    <string name="affirmation40">A weakness that matters should be your next strength</string>
+    <string name="affirmation41">It may be hard to stick to it, but can you respect yourself if you don\'t?</string>
+    <string name="affirmation42">Not everything precious glitters.</string>
+    <string name="affirmation43">A difficulty is simply a challenge yet to be mastered.</string>
+    <string name="affirmation44">One one coco full basket.</string>
+    <string name="affirmation45">Once you break the barriers, they will remember your name.</string>
+    <string name="affirmation46">Every challenge is another opportunity.</string>
+    <string name="affirmation47">You have not failed if you haven\'t given up</string>
+    <string name="affirmation48">Today is the first day of the rest of your life.</string>
+    <string name="affirmation49">When all is said and done, what you said should be done.</string>
+    <string name="affirmation50">When the pain is too great, laugh.</string>
+    <string name="select_voice">Select Voice</string>
+
+
+    <string-array name ="allVoices">
+        <item>US Female</item>
+        <item>US Male</item>
+        <item>British Female</item>
+        <item>British Male</item>
+    </string-array>
+</resources>
