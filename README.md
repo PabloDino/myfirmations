@@ -17,4 +17,8 @@
 
 <h3 style="color: #2e6c80;">Are there any known issues?</h3>
 
-<p>1. There is a problem on initial install - the app seems to not properly read the settings data the first time it is run, and it needs to be re-loaded <br />2. Data binding in the code is not fully operational - will revisit <br />3. There is no need for the recycler view to load (the default) 5 view holders. Code inserted to specify only one view holder to initialize has had no effect to date - will revisit.</p>
+<p>1. There is a problem on initial install - the app seems to not properly read the settings data the first time it is run, and it needs to be re-loaded <br />2. Data binding in the code is not fully operational - will revisit <br />3. There is no need for the recycler view to load (the default) 5 view holders. Code inserted to specify only one view holder to initialize has had no effect to date - will revisit.
+4. The app icon is skewed on the device screen.
+</p>
+
+There could also be some refactoring in order - all in all this was a quick knockout of something that is at version 0.9. but is functional.
