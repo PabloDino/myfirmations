@@ -12,7 +12,7 @@
 <h3 style="color: #2e6c80;">How did I do it(High level overview)?</h3>
 <p>The app employs a SQLite data store, a text to speech library, a recycler view, and other widgets to present screen elements. On initial startup the SQLite store is initialized from the resources to populate quote and setting data. A single activity was employed with three fragments for the screens. One fragment, which hosts a recycler view, manages the scrolling with the aid of a tail recursive function that invokes the navigation of the under a delay stored in the app settings. The fragment that manages scrolling allows navigation to the setup activity as well as the edit activity. While away from the fragment that manages scrolling, automatic scrolling is paused.</p>
 
-<h3 style="color: #2e6c80;">Are there any distribution or rights issues</h3>
+<h3 style="color: #2e6c80;">What if I want to build on it and distribute?</h3>
 <p>At this point, this is a practice app. You should consider the code free to use for non-commercial purposes. All I ask is a mention. I claim no rights over the images used, or the app icon. Images were obtained from https://unsplash.com/ with a search of "Jamaica". The app icon was obtained from https://www.dreamstime.com/. You may recognize a few of the quotes as common sayings- a few others are out of my head. Enjoy, and if you re-use, all I ask is a mention (if applicable).</p>
 
 <h3 style="color: #2e6c80;">Are there any known issues?</h3>
