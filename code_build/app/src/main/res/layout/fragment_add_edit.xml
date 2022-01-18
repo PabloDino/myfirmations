@@ -9,7 +9,7 @@
             name="firm"
             type="com.example.myfirmations.data.Firmation" />
 
-    </data>
+       </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enter Firmation"
+
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -27,7 +28,7 @@
             android:id="@+id/txtFirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Firmation"
+            android:text ="@{firm.quote}"
             app:layout_constraintTop_toBottomOf="@id/txtFirmLabel"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -37,13 +38,15 @@
             android:layout_height="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtFirm"
-            tools:src="@tools:sample/backgrounds/scenic[3]" />
+            app:imageName="@{firm.imgName}"
+            tools:src='@tools:sample/backgrounds/scenic[3]' />
 
         <CheckBox
             android:id="@+id/chkSayIt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Say it?"
+            android:checked="@{firm.sayThis}"
             app:layout_constraintTop_toBottomOf="@id/imgFirm"
             app:layout_constraintStart_toStartOf="parent" />
 

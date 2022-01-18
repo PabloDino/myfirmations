@@ -25,11 +25,7 @@ import java.util.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SettingsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
     AdapterView.OnItemSelectedListener {
     // TODO: Rename and change types of parameters
@@ -44,7 +40,6 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
     lateinit var settings: Settings
     private var tts: TextToSpeech? = null
     var selectedVoice: String = ""
-    var firmId:Int = 0
     val args: SettingsFragmentArgs by navArgs()
     var voiceChanged = false
     var scrollPos:Int =0
@@ -103,8 +98,6 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
                 scrollPos = 0
         else
              scrollPos = firmViewModel.getOrdinalPos()-1
-        Log.d("Firms", "CurrentSettings:::Speed:"+scrollSpeed.toString()+";Speak:"+allowSpeaking.toString()+";Voice:"+selectedVoice)
-
 
         sldSpeed!!.value = scrollSpeed
 
@@ -114,9 +107,7 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
             R.array.allVoices,
             android.R.layout.simple_spinner_item
         ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
             spnChooseVoice!!.adapter = adapter
         }
 
@@ -139,8 +130,8 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
             settingsViewModel.updateSettings( scrollSpeed, allowSpeaking,selectedVoice)
             val action = SettingsFragmentDirections
                 .actionSettingsFragmentToScrollFragment(selectedVoice, scrollSpeed, allowSpeaking,scrollPos)
-            firmViewModel.scrollingPaused = false
-            firmViewModel.navigatedBack = true
+            firmViewModel.scrollingPaused= false
+            firmViewModel.navigatedBack =true
 
             findNavController().navigate(action)
 
@@ -152,7 +143,7 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
         btnCancel?.setOnClickListener({
             val action = SettingsFragmentDirections
                 .actionSettingsFragmentToScrollFragment(selectedVoice, scrollSpeed, allowSpeaking,scrollPos)
-            firmViewModel.scrollingPaused = false
+            firmViewModel.scrollingPaused = true
             firmViewModel.navigatedBack = true
 
             findNavController().navigate(action)
@@ -164,14 +155,11 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
     override fun onInit(p0: Int) {
 
         if (p0 == TextToSpeech.SUCCESS) {
-            // set US English as language for tts
             val result = tts!!.setLanguage(Locale.US)
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.d("Firms", "The Language specified is not supported!")
             } else {
-                Log.d("Firms", "Initilization Success!!!")
-                Log.d("Firms", "prev voice = "+tts!!.voice.name.toString() +";Setting voice to "+ selectedVoice)
                 val stringArray = getResources().getStringArray(R.array.allVoices);
                 val currentVoice = when(selectedVoice)
                 {
@@ -194,7 +182,6 @@ class SettingsFragment : Fragment(), TextToSpeech.OnInitListener,
 
 
                 }
-                Log.d("Firms", "oldvoice :" +prevVoiceName+"->newvoice:"+tts!!.voice.name.toString())
 
                 if (voiceChanged) {
                     lifecycleScope.launch {

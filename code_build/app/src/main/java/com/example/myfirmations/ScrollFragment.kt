@@ -21,33 +21,19 @@ import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.system.exitProcess
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ScrollFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ScrollFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     lateinit var settings: Settings
     var scrollSpeed: Float = 15f
     var allowSpeaking: Boolean = true
     lateinit var selectedVoice: String
     var firmId: Int = 1
-    var txtFirm: TextView? = null
-    var firmArg: Int = 0
+
     private var scrollPos: Int = 0
 
     lateinit var rclFirms: RecyclerView
     val scrollAdapter = ScrollAdapter(this)
-    var autoScrollStarted = false
 
 
     val args: ScrollFragmentArgs by navArgs()
@@ -76,16 +62,11 @@ class ScrollFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
 
         firmViewModel.firms.observe(this) { items ->
             items.let { items ->
                 items.let {
                     scrollAdapter.submitList(it)
-                    //quote = it.get(0).quote
                 }
             }
         }
@@ -105,6 +86,11 @@ class ScrollFragment : Fragment() {
         // Inflate the layout for this fragment
         val fragmentScrollBinding = FragmentScrollBinding.inflate(inflater, container, false)
         binding = fragmentScrollBinding
+        rclFirms = binding!!.rclFirms
+        rclFirms.layoutManager =
+            LinearLayoutManager(binding!!.root!!.context, LinearLayoutManager.HORIZONTAL, false)
+        rclFirms.getRecycledViewPool().setMaxRecycledViews(0, 1)
+
         return fragmentScrollBinding.root
 
         //return inflater.inflate(R.layout.fragment_scroll, container, false)
@@ -118,15 +104,11 @@ class ScrollFragment : Fragment() {
         val btnSnooze = binding!!.btnSnooze
         val btnSetup = binding!!.btnSettings
         val btnExit = binding!!.btnExit
-        rclFirms = binding!!.rclFirms
 
         selectedVoice = args.selectedVoice
         scrollPos = args.scrollPos
 
         rclFirms.adapter = scrollAdapter
-        rclFirms.layoutManager =
-            LinearLayoutManager(binding!!.root!!.context, LinearLayoutManager.HORIZONTAL, false)
-        rclFirms.getRecycledViewPool().setMaxRecycledViews(0, 1)
 
         btnAdd?.setOnClickListener({
             firmId = scrollAdapter.getId()
@@ -138,12 +120,12 @@ class ScrollFragment : Fragment() {
                     allowSpeaking,
                     scrollPos
                 )
-            firmViewModel.scrollingPaused = true
+            firmViewModel.scrollingPaused= true
             findNavController().navigate(action)
         })
 
         btnSetup?.setOnClickListener({
-            firmViewModel.scrollingPaused = true
+            firmViewModel.scrollingPaused= true
             val action = ScrollFragmentDirections
                 .actionScrollFragmentToSettingsFragment(
                     scrollSpeed, allowSpeaking, selectedVoice, scrollPos
@@ -197,23 +179,14 @@ class ScrollFragment : Fragment() {
             popupMenu.show()
         })
 
-        firmViewModel.scrollingPaused = false
+        firmViewModel.scrollingPaused= false
         scrollPos = args.scrollPos
-        Log.d("Firms", "Deciding whether to custom scroll to id " + scrollPos)
         if (scrollPos > 0)// {
             rclFirms.scrollToPosition(scrollPos)
-
-        // }
-        // else {
-        //  if (!(autoScrollStarted)) {
-        //     autoScrollStarted = true
 
         lifecycleScope.launch {
             tailRecursiveScroll(rclFirms, scrollAdapter)
         }
-        // }
-        //}
-
     }
 
     private tailrec suspend fun tailRecursiveScroll(
@@ -222,27 +195,14 @@ class ScrollFragment : Fragment() {
 
         delay(scrollSpeed.toLong() * 1000)
         firmViewModel.autoscrolled = true
-        /*
-        if (firmViewModel.navigatedBack)
-        {
-            firmViewModel.increaseOrdinalPos()
-            firmViewModel.navigatedBack=false
-            firmViewModel.setBoundId(scrollAdapter.getId())
 
-        }
-*/
         if (recyclerView.canScrollHorizontally(RecyclerView.EdgeEffectFactory.DIRECTION_RIGHT)) {
             val targetpos = getFirmVM().getOrdinalPos()
-            Log.d(
-                "Firms",
-                "Scrolling to pos " + targetpos.toString() + " to say " + scrollAdapter.getQuote()
-            )
             recyclerView.scrollToPosition(targetpos)
         } else {
             getFirmVM().resetOrdinalPos()
             recyclerView.scrollToPosition(0)
         }
-        Log.d("Firms", "ScrollingPaused is " + firmViewModel.scrollingPaused)
         if (!firmViewModel.scrollingPaused) {
             tailRecursiveScroll(recyclerView, scrollAdapter)
         }

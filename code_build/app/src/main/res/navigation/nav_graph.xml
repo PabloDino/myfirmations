@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/scrollFragment"
         android:name="com.example.myfirmations.ScrollFragment"
-        android:label="fragment_scroll"
-        tools:layout="@layout/fragment_scroll" >
+        android:label="MyFirmations"
+        tools:layout="@layout/fragment_scroll">
         <action
             android:id="@+id/action_scrollFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
@@ -17,25 +17,25 @@
             app:destination="@id/addEditFragment" />
         <argument
             android:name="selectedVoice"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
         <argument
             android:name="scrollSpeed"
-            app:argType="float"
-            android:defaultValue="15.0" />
-        <argument android:name="allowSpeaking"
-            app:argType="boolean"
-            android:defaultValue="true" />
+            android:defaultValue="15.0"
+            app:argType="float" />
+        <argument
+            android:name="allowSpeaking"
+            android:defaultValue="true"
+            app:argType="boolean" />
         <argument
             android:name="scrollPos"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/addEditFragment"
         android:name="com.example.myfirmations.AddEditFragment"
-        android:label="fragment_add_edit"
-        tools:layout="@layout/fragment_add_edit" >
+        android:label="MyFirmations(Edit)">
         <action
             android:id="@+id/action_addEditFragment_to_scrollFragment"
             app:destination="@id/scrollFragment" />
@@ -58,15 +58,16 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.myfirmations.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" >
+        android:label="MyFirmations(Settings)"
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_scrollFragment"
             app:destination="@id/scrollFragment" />
         <argument
             android:name="scrollSpeed"
             app:argType="float" />
-        <argument android:name="allowSpeaking"
+        <argument
+            android:name="allowSpeaking"
             app:argType="boolean" />
         <argument
             android:name="selectedVoice"

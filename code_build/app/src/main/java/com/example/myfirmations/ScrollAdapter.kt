@@ -30,19 +30,14 @@ class ScrollAdapter(private val parentFragment: ScrollFragment)
     fun getImgName():String{
         return imgName
     }
-    fun getSnoozeTill():Long{
-        return snoozeTill
-    }
+
     fun getSayThis():Boolean{
         return sayThis
     }
     fun getQuote():String{
         return quote
     }
-
-    //class ItemViewHolder(binding: ListItemBinding)
-    //    :RecyclerView.ViewHolder(binding.root), TextToSpeech.OnInitListener{
-        class ItemViewHolder(val binding: ListItemBinding,parentFragment: ScrollFragment) :
+    class ItemViewHolder(val binding: ListItemBinding,parentFragment: ScrollFragment) :
              RecyclerView.ViewHolder(binding.root), TextToSpeech.OnInitListener{
 
         val txtFirm = binding.txtFirm
@@ -69,35 +64,23 @@ class ScrollAdapter(private val parentFragment: ScrollFragment)
                 parentFrag.getFirmVM().increaseOrdinalPos()
                 if (ttsInitialized)
                    if ((allowSpeaking)&&(parentFrag.getFirmVM().autoscrolled)) {
-/*
-                       if (!(tts!!.voice.name.toString()
-                               .equals(parentFrag.settings.selectedVoice))
-                       ) {
-                           Log.d("Firms","tts Voice::"+tts!!.voice.name.toString()+";parent voice:"+ parentFrag.settings.selectedVoice)
-                           selectedVoice = parentFrag.settings.selectedVoice
-                           onInit(TextToSpeech.SUCCESS)
-                       } else {
 
- */
                            tts!!.speak(firm.quote, TextToSpeech.QUEUE_ADD, null, "")
                            parentFrag.getFirmVM().setBoundId(firmId)
-                      // }
                        parentFrag.getFirmVM().autoscrolled = false
+
                    }
                     }
 
 
         }
        override fun onInit(p0: Int) {
-       // fun onInit(p0: Int) {
             Log.d("Firms", "Begin Init TTS : Selected voice is [" + selectedVoice+"]")
 
             if (p0 == TextToSpeech.SUCCESS) {
-                // set US English as language for tts
                 val result = tts!!.setLanguage(Locale.US)
 
                 val stringArray = context.resources.getStringArray(R.array.allVoices);
-                //val selection = parent.getItemAtPosition(pos).toString()
                 val currentVoice = when(selectedVoice)
                 {
                     stringArray[0]->"en-US-Language"

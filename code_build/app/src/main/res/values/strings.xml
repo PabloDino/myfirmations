@@ -57,6 +57,7 @@
     <string name="affirmation49">When all is said and done, what you said should be done.</string>
     <string name="affirmation50">When the pain is too great, laugh.</string>
     <string name="select_voice">Select Voice</string>
+    <string name="drawableString">\@drawable/%s</string>
 
 
     <string-array name ="allVoices">

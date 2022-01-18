@@ -1,5 +1,6 @@
 package com.example.myfirmations
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContentProviderCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -73,11 +76,16 @@ class AddEditFragment : Fragment() {
             savedInstanceState: Bundle?
         ): View? {
             // Inflate the layout for this fragment
-            val fragmentAddEditBinding = FragmentAddEditBinding.inflate(inflater, container, false)
-            binding = fragmentAddEditBinding
-            return fragmentAddEditBinding.root
+            //val fragmentAddEditBinding = FragmentAddEditBinding.inflate(inflater, container, false)
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_edit, container, false)
+            //binding = fragmentAddEditBinding
+            return binding!!.root
         }
 
+    fun getImgResourceId(view:View, imgName:String):Int
+    {
+             return  context?.resources?.getIdentifier(imgName,"drawable", context?.packageName)!!
+    }
 
 
     private fun bind(firm: Firmation)
@@ -86,11 +94,12 @@ class AddEditFragment : Fragment() {
         val dateFormatter= SimpleDateFormat("E MMM d", Locale.getDefault())
 
 
-        editText?.setText(firm.quote)
+        //editText?.setText(firm.quote)
         val imgId: Int? = context?.resources?.getIdentifier(firm.imgName,"drawable", context?.packageName)
         if (imgId != null) {
             imageView?.setImageResource(imgId)
         }
+        /*
         if (firm.sayThis)
             chkSayIt?.isChecked = true
         else
@@ -105,7 +114,7 @@ class AddEditFragment : Fragment() {
             txtSnoozeTill?.setText("")
 
         }
-
+        */
 
 
     }
@@ -133,18 +142,19 @@ class AddEditFragment : Fragment() {
                 quote = firm.quote
                 snoozeTill= firm.snoozeTill
                 sayThis = firm.sayThis
-
-                bind(firm)
+                binding!!.firm = firm
+                //bind(firm)
 
         }
 
+            binding!!.lifecycleOwner= viewLifecycleOwner
             btnSave?.setOnClickListener({
                 quote = editText!!.text.toString()
                 sayThis= chkSayIt!!.isChecked
                 firmViewModel.updateFirm(firmId, quote, imageName, sayThis, snoozeTill)
                 Log.d("Firms","sending back data at pos "+scrollPos.toString())
-                firmViewModel.scrollingPaused = false
-                firmViewModel.navigatedBack = true
+                firmViewModel.scrollingPaused=false
+                firmViewModel.navigatedBack=true
 
                 val action = AddEditFragmentDirections
                     .actionAddEditFragmentToScrollFragment(selectedVoice,scrollSpeed,allowSpeaking, scrollPos)
@@ -158,8 +168,8 @@ class AddEditFragment : Fragment() {
                 val action = AddEditFragmentDirections
                     .actionAddEditFragmentToScrollFragment(selectedVoice,scrollSpeed,allowSpeaking, scrollPos)
 
-                firmViewModel.scrollingPaused = false
-                firmViewModel.navigatedBack = true
+                firmViewModel.scrollingPaused= false
+                firmViewModel.navigatedBack=true
                 findNavController().navigate(action)
             })
 
@@ -174,8 +184,8 @@ class AddEditFragment : Fragment() {
             btnCancel?.setOnClickListener({
                 val action = AddEditFragmentDirections
                     .actionAddEditFragmentToScrollFragment(selectedVoice,scrollSpeed,allowSpeaking, scrollPos)
-                firmViewModel.scrollingPaused = false
-                firmViewModel.navigatedBack = true
+                firmViewModel.scrollingPaused=false
+                firmViewModel.navigatedBack=true
 
                 findNavController().navigate(action)
             })

@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModel(private val settingsDao: SettingsDao): ViewModel() {
 
-    //@Query("Select * from Settings")
-    fun getSettings(): LiveData<Settings> = settingsDao.getSettings()
+     fun getSettings(): LiveData<Settings> = settingsDao.getSettings()
 
     val currentSettings = getSettings()
 
